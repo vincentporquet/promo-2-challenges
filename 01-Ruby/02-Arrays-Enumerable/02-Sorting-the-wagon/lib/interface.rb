@@ -14,4 +14,4 @@ end while name != ""
 
 # TODO: Call `wagon_sort` method and display the sorted student list
 
-puts "Congratulations! Your Wagon has #{ students.length} students #{wagon_sort}"
+puts "Congratulations! Your Wagon has #{students.length} students, #{wagon_sort(students)* ", "}"
