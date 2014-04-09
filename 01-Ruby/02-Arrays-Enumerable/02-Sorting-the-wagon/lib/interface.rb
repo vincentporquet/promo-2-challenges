@@ -7,8 +7,11 @@ begin
   name = gets
   name.chomp! if name
 
-  # TODO: Add the name we just gotto the students array
+  # TODO: Add the name we just got to the students array
+  students << name if name != ""
 
 end while name != ""
 
 # TODO: Call `wagon_sort` method and display the sorted student list
+
+puts "Congratulations! Your Wagon has #{ students.length} students #{wagon_sort}"
