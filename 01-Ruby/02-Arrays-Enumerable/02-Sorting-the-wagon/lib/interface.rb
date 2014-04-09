@@ -14,4 +14,7 @@ end while name != ""
 
 # TODO: Call `wagon_sort` method and display the sorted student list
 
-puts "Congratulations! Your Wagon has #{students.length} students, #{wagon_sort(students)* ", "}"
+my_students = wagon_sort(students)
+last_student = my_students.last
+first_students = my_students[0..-2].join(", ")
+puts "Congratulations! Your Wagon has #{students.length} students, #{first_students} and #{last_students}"
