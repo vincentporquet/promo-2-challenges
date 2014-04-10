@@ -1,11 +1,14 @@
 def sum_odd_indexed(array)
   # TODO: computes the sum of elements at odd indices (1, 3, 5, 7, etc.)
   #       You should make use Enumerable#each_with_index
-array.each_with_index do |number, i|
   sum = 0
-  if i.odd?
-    sum += number
+
+  array.each_with_index do |number, i|
+    if i.odd?
+      sum += number
+    end
   end
+
   sum
 end
 
@@ -30,16 +33,26 @@ end
 def add_bang(array)
   # TODO: Take an array of strings and return a new array with "!" appended to each string.
   #       You should use Enumerable#map
+  array.map{|word| word + "!"}
 end
 
 def product(array)
   # TODO: Calculate the product of an array of numbers.
   #       You should use of Enumerable#reduce
+  array.reduce(1, :*)
 end
 
 def sorted_pairs(array)
   # TODO: Reorganize an array into slices of 2 elements, and sort each slice alphabetically.
   #       You should make use of Enumerable#each_slice
+  result = []
+
+  array.each_slice(2) do |pair|
+    pair.sort!
+    result << pair
+  end
+  result
+
 end
 
 
