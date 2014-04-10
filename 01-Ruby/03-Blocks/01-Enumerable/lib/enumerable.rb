@@ -24,7 +24,7 @@ end
 def first_under(array, limit)
   # TODO: Return the first number from an array that is less than limit.
   #       You should use Enumerable#find
-  array
+  array.detect{|number| number < limit}
 end
 
 def add_bang(array)
