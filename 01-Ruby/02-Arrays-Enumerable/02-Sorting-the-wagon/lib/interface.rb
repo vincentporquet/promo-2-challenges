@@ -17,4 +17,6 @@ end while name != ""
 my_students = wagon_sort(students)
 last_student = my_students.last
 first_students = my_students[0..-2].join(", ")
-puts "Congratulations! Your Wagon has #{students.length} students, #{first_students} and #{last_students}"
+
+puts "Congratulations! Your Wagon has #{students.length} students:
+- #{first_students} and #{last_students}"
