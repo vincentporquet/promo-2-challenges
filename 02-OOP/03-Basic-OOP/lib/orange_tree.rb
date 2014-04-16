@@ -1,11 +1,11 @@
 class OrangeTree
   # TODO: Implement all the specs defined in the README.md :)
-  attr_accessor :age, :height, :fruits, :pick_a_fruit
+  attr_accessor :age, :height, :fruits, :fruit_count
   #donner un age à notre arbre
   #donner une taille à notre arbre
   def initialize
   @fruits = 0
-  @age = 0
+  @age = 0.to_i
   @height = 0
   @fruit_count = 0
   end
@@ -20,11 +20,9 @@ class OrangeTree
   #sinon
     #il grandit pas
   def height
-    if @age = 0
-      @height = 0
-    elsif @age <= 10
-      @height += 1
-    else
+    if @age < 10
+      @height = @age
+    else @age > 10
       @height = 10
     end
   end
@@ -37,10 +35,10 @@ class OrangeTree
    #sinon
     #pas de fruit
   def fruits
-    if @age.between?(6, 9)
-      @fruits += 100
-    elsif @age.between?(10, 15)
-      @fruits += 200
+    if @age.to_i.between?(6, 10)
+      @fruits = 100 && @fruit_count = 100
+    elsif @age.to_i.between?(10, 15)
+      @fruits = 200 && @fruit_count = 200
     else
       @fruits = 0
     end
@@ -48,8 +46,8 @@ class OrangeTree
 
   #on peut prendre un fruit
   def pick_a_fruit!
-    if @fruits > 0
-      @fruits -= 1
+    if @fruits_count.to_i > 0
+      @fruits.to_i = @fruits -1
     else
       "there is no more fruits"
     end
@@ -57,10 +55,10 @@ class OrangeTree
 
   #meurt entre 50 et 100 ans
   def dead?
-    if @age > 100
-      true
-    else
+    if @age.to_i <= 50
       false
+    else
+      true
     end
   end
 end
