@@ -24,28 +24,29 @@ class BankAccount
     @name, @iban = name, iban
 
     add_transaction(initial_deposit)
+    puts "Owner: #{@name}\n IBAN: #{@iban}\n Current amount: #{@position} euros"
   end
 
   def withdraw(amount)
-    if @position >= amount
-      add_transaction
-      "You've just withdraw #{amount} euros"
-    else
-      "you don't have enough cash"
-    end
+    @position -= amount
+    "You've just withdraw #{amount} euros"
+
     # TODO: Call add_transaction with the right argument
     # TODO: returns a string with a message
   end
 
   def deposit(amount)
-     add_transaction
-     "You've just deposit #{amount} euros"
+    @position += amount
+    "You've just deposit #{amount} euros, #{@name} / Current amount: #{@position}"
     # TODO: Call add_transaction with the right argument
     # TODO: returns a string with a message
   end
 
   def transactions_history(args = {})
-      if args[:password] == @password ? @transactions : "wrong password"
+      if args[:password] == @password
+        "#{@transactions}"
+      else
+        "wrong password"
       end
     # TODO: Check if there is a password and if so if it is correct
     # TODO: return a string displaying the transactions, BUT NOT return the transaction array !
@@ -57,9 +58,9 @@ class BankAccount
   end
 
   def to_s
-    puts @name
-    puts @iban
-    puts "Current amount: #{@position} euros"
+    @name.to_s
+    @iban.to_s
+    "Current amount: #{@position} euros"
     # Method used when printing account object as string (also used for string interpolation)
     # TODO: Displays the account owner, the hidden iban and the position of the account
   end

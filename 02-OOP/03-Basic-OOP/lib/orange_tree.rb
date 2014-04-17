@@ -1,64 +1,57 @@
 class OrangeTree
-  # TODO: Implement all the specs defined in the README.md :)
-  attr_accessor :age, :height, :fruits, :fruit_count
-  #donner un age à notre arbre
-  #donner une taille à notre arbre
+  attr_reader :height, :age
+
   def initialize
-  @fruits = 0
-  @age = 0.to_i
-  @height = 0
-  @fruit_count = 0
+    @age = 0
+    @height = 0
+    @fruits = 0
+    @dead = false
   end
 
-  #tous les ans, il prend 1 an!
-  def one_year_passes!
-    @age += 1
-  end
-
-  #si il à moins de 10 ans
-    #il grandi de 1m/an
-  #sinon
-    #il grandit pas
-  def height
-    if @age < 10
-      @height = @age
-    else @age > 10
-      @height = 10
+  def one_year_passes
+    unless @dead
+      @age += 1
+      grow_up
+      grow_fruits
+      may_die
     end
   end
 
-  # notre arbre donne des fruits
-   #si entre 5 et 10 ans
-    #100 fruits par an
-   #si entre 10 et 15 ans
-    #200 fruits par an
-   #sinon
-    #pas de fruit
-  def fruits
-    if @age.to_i.between?(6, 10)
-      @fruits = 100 && @fruit_count = 100
-    elsif @age.to_i.between?(10, 15)
-      @fruits = 200 && @fruit_count = 200
-    else
-      @fruits = 0
-    end
-  end
-
-  #on peut prendre un fruit
   def pick_a_fruit!
-    if @fruits_count.to_i > 0
-      @fruits.to_i = @fruits -1
-    else
-      "there is no more fruits"
+    if @fruits > 0
+      @fruits -= 1
     end
   end
 
-  #meurt entre 50 et 100 ans
   def dead?
-    if @age.to_i <= 50
-      false
-    else
-      true
-    end
+    @dead
   end
+
+  private
+    def grow_up
+      if @age.between?(1, 10)
+        @height += 1
+      end
+    end
+
+    def grow_fruits
+      if @age.between?(6, 10)
+        @fruits = 100
+      elsif @age.between?(11, 15)
+        @fruits = 200
+      else
+        @fruits = 0
+      end
+    end
+
+    def may_die
+      if @age == 100
+        @dead = true
+      elsif @age >=50
+        if rand(6)+1 == 6
+          @dead = true
+        end
+      end
+    end
+
 end
