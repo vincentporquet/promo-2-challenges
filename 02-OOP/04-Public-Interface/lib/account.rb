@@ -3,8 +3,8 @@ class DepositError < StandardError
 end
 
 class BankAccount
-  attr_reader :iban
-  attr_accessor :position, :name
+  attr_reader :position
+  attr_accessor :name
   # Contract for the BankAccount class
   # - you can access full owner's name and position, but partial IBAN
   # - you cannot access full IBAN
@@ -24,11 +24,10 @@ class BankAccount
     @name, @iban = name, iban
 
     add_transaction(initial_deposit)
-    puts "Owner: #{@name}\n IBAN: #{@iban}\n Current amount: #{@position} euros"
   end
 
   def withdraw(amount)
-    @position -= amount
+    add_transaction(-amount)
     "You've just withdraw #{amount} euros"
 
     # TODO: Call add_transaction with the right argument
@@ -36,8 +35,8 @@ class BankAccount
   end
 
   def deposit(amount)
-    @position += amount
-    "You've just deposit #{amount} euros, #{@name} / Current amount: #{@position}"
+    add_transaction(amount)
+    "You've just deposit #{amount} euros"
     # TODO: Call add_transaction with the right argument
     # TODO: returns a string with a message
   end
@@ -45,6 +44,8 @@ class BankAccount
   def transactions_history(args = {})
       if args[:password] == @password
         "#{@transactions}"
+      elsif args[:password] == nil
+        "no password given"
       else
         "wrong password"
       end
@@ -53,16 +54,14 @@ class BankAccount
   end
 
   def iban
-    @iban.sub([5..14], '*')
+    @iban[0,4] + "********" + @iban[-3,3]
     # TODO: Hide the middle of the IBAN like FR14**************606 and return it
   end
 
   def to_s
-    @name.to_s
-    @iban.to_s
-    "Current amount: #{@position} euros"
     # Method used when printing account object as string (also used for string interpolation)
     # TODO: Displays the account owner, the hidden iban and the position of the account
+    "Iban: #{iban} | Name: #{@name} | Position: #{@position}"
   end
 
   private
@@ -75,3 +74,44 @@ class BankAccount
   end
 
 end
+
+vinz_account = BankAccount.new("Vincent porquet", "768FR555", 2000, "marinecouicouin")
+
+puts vinz_account
+
+puts vinz_account.name
+
+puts vinz_account.position
+
+puts vinz_account.withdraw(100)
+
+puts vinz_account.deposit(1000)
+
+puts vinz_account.position
+
+
+puts vinz_account.transactions_history()
+#=> "no password given"
+
+puts vinz_account.transactions_history({password: "toto"})
+#=> "wrong password"
+
+puts vinz_account.transactions_history({password: "marinecouicouin"})
+#=> ttes les transactions..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
