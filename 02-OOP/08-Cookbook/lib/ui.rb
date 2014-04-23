@@ -1,6 +1,7 @@
 class UI
 
   TASKS = {
+    import: "- Import recipes from marmiton [web_import]"
     list: "- List all recipes [list]",
     add:  "- Add a new recipe [add]",
     del:  "- Delete a recipe [del]",
@@ -24,7 +25,7 @@ class UI
 
     added_recipe = @controller.add_recipe(name)
 
-    puts "the recipe #{add_recipe} has been added !"
+    puts "the recipe #{added_recipe} has been added !"
     # TODO: ask the user a recipe name
     # TODO: call the appropriate controller method with the proper argument(s)
   end
@@ -42,6 +43,8 @@ class UI
   end
 
   def exit
+    @running = false
+    puts "Goodbye and have a good meal !"
     # TODO: exit the program
     # Hint: Take a look at the display method !
   end

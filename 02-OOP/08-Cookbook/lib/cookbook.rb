@@ -1,4 +1,6 @@
 require "csv"
+require 'open-uri'
+require 'nokogiri'
 
 class Cookbook
 
@@ -10,12 +12,11 @@ class Cookbook
     load_csv(file)
   end
 
-
   def create_recipe(name)
     @recipes << name
     CSV.open(@file, "wb") do |csv|
       @recipes.each do |recipe|
-      csv << name
+      csv << [recipe]
       end
     end
   end
@@ -34,7 +35,6 @@ class Cookbook
       end
     end
 
-  end
   # TODO: Implement a save method that will write the data into the CSV
   # And don't forget to use this save method when you have to modify something in your recipes array.
 

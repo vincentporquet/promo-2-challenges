@@ -20,6 +20,7 @@ class Controller
     @cookbook.destroy(index)
     recipe_to_delete
   end
+
   # TODO: Implement the methods to retrieve, add, and delete recipes through the model
 end
 
