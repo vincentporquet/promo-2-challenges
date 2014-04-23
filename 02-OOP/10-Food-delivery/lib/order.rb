@@ -1,6 +1,6 @@
 class Order
 
-  attr_reader :date, :items, :client, :delivered
+  attr_reader :date, :items, :client, :delivered, :id
 
   def initialize(deliverer_name, items, client_name, restaurant)
     @date = Time.now
@@ -8,6 +8,7 @@ class Order
     @delivered = "undelivered"
     @price = price
     order_registration(restaurant, client_name, deliverer_name)
+    generate_id
   end
 
   def price
@@ -28,6 +29,10 @@ class Order
     @deliverer = restaurant.deliverers[deliverer_name]
     @client.orders << self
     @deliverer.orders << self
+  end
+
+  def generate_id
+    @id = @deliverer.orders.index(self).to_s
   end
 
 end

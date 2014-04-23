@@ -5,7 +5,6 @@ class RestoManager
     login(restaurant)
   end
 
-
   def login(restaurant)
 
     puts "Name?"
@@ -25,8 +24,6 @@ class RestoManager
   end
 
 end
-
-
 
 class Interface
 
@@ -49,7 +46,8 @@ class Interface
   def view
     @deliverer.orders.each do |order|
       puts "\n"
-      puts "#{order.delivered}, #{order.client.name}, #{order.client.adress}, #{order.items.each{|item| puts item.name}}, #{order.price}$"
+      print "id- #{order.id} : #{order.delivered}, #{order.client.name}, #{order.client.adress}, #{order.price}$, "
+      puts "#{order.items.map { |item| item.name }.join(", ")}"
       puts "\n"
     end
   end
@@ -57,9 +55,10 @@ class Interface
   def complete
     puts "What order do you wanna upgrade?"
     view
+    puts "id of the order you wanna upgrade buddy?"
     search = gets.chomp
-    order = @deliverer.orders.find{|order| order == search}
-    order.delivered("ok")
+    order = @deliverer.orders.find{|order| order.id == search}
+    order.delivery("ok")
     puts "#{order} was delivered, go back to work!"
   end
 
