@@ -1,6 +1,6 @@
 class Restaurant
 
-  attr_accessor :clients, :orders, :managers, :deliverers
+  attr_accessor :clients, :orders, :managers, :deliverers, :menu
 
   def initialize(name, location, phone, menu)
     @clients = []

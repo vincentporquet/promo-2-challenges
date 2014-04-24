@@ -3,18 +3,19 @@ require_relative "ingredient"
 
 class Menu
 
-  attr_accessor :ingredients, :meals
+  attr_accessor :ingredients, :meals, :list
 
   def initialize
     @ingredients = []
     @meals = []
-    list
+    @list = []
   end
 
   def list
-    @list = []
+    #@list = (@ingredients << @meals).flatten
     @ingredients.each{ |item| @list << item }
     @meals.each{ |item| @list << item }
+
     @list
   end
 end
