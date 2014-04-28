@@ -20,4 +20,5 @@ end
 
 def delete_post(db, id)
   db.execute("DELETE FROM posts WHERE Id = #{id}")
+  puts "this post has been deleted !"
 end
