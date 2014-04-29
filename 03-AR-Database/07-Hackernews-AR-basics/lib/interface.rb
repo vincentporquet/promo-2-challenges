@@ -25,16 +25,14 @@ while true
 
     #TODO: use ActiveRecord to add a new entry to the DB
   when 2
-    posts = Post.all
-    p posts
+    Post.all.each {|post| puts post}
     #TODO: use ActiveRecord to get all entries from the DB
   when 3
     #post.delete_all
-    Post.find_each(&:destroy)
+    Post.destroy_all
     puts "all the post have been deleted !"
     #TODO: use ActiveRecord to delete all entries from the DB
   when 4
     break
 	end
-
 end

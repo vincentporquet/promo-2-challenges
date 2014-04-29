@@ -16,6 +16,6 @@ DB_CONFIG = YAML::load(IO.read(File.join(File.dirname(__FILE__),'database.yml'))
 DB_PATH =  APP_ROOT.join(DB_CONFIG["development"]["database"])
 
 ActiveRecord::Base.configurations = DB_CONFIG
-ActiveRecord::Base.establish_connection('development')
+ActiveRecord::Base.establish_connection(:development)
 
 

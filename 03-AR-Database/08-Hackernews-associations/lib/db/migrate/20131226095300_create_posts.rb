@@ -1,3 +1,4 @@
+
 class CreatePosts < ActiveRecord::Migration
   def up
     create_table :posts do |t|
