@@ -16,17 +16,13 @@ function run_challenges() {
   $('#email').val('vincent_porquet');
 
 
-
   // Ex 3. Replace the email hint (next to the input) with 'This is my email now'
   //       The text should be emphasized using a <strong> tag
   $('#email-hint').html("<strong>This is my email now</strong>"); 
 
 
-
   // Ex 4. Add the .blue CSS class to the table header cells (th elements)
-  $('.table > thead > tr > th').css({
-    color: 'blue'
-  });
+  $('.table > thead > tr > th').addClass('blue');
 
 
   // Ex 5. Count the number of table body rows there are (team count!)
@@ -46,7 +42,7 @@ function run_challenges() {
 
 
   // Ex 8. Change the background color of all table header cells to #DDF4FF
-  $('.table > thead > tr > th').css({
+  $('thead th').css({
     background: '#DDF4FF'
   });
 
