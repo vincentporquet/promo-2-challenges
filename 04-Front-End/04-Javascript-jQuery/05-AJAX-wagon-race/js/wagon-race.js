@@ -34,11 +34,14 @@ $(function create_button() {
       url: 'http://wagon-race-api.herokuapp.com//game/session/' +SESSION_ID+ '/new',
       data: JSON.stringify(players),
       contentType: 'application/json',
-      success: function(){
+      success: function(data){
         $('table').show();
         generate_grid(GRID_SIZE);
         give_player_hints(PLAYER1_KEY, PLAYER2_KEY);
         $('form').hide();
+      },
+      error: function(data){
+        alert('API is down. Retry in a few minute');
       }
     });
 
